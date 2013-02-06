@@ -10,20 +10,20 @@ The app is very simple and not doing much by design since the focus is on the st
 * Backbone
 * jQuery & JQM
 * JQM router - not backbone router (It is just my preference)
-* * In the current version, it is not really being utilized.
+** In the current version, it is not really being utilized.
 * lodash
 * requirejs
 
 #App flow user prospective#
 * It has three JQM pages: "Landing, About, Login"
-* When it launches, it goes to landing page.
+* When it launches, it goes to the Landing page.
 * From the landing page, user can go to either the "About" or the "Login page."
-* From either the “About/Login” page, it can go to other two pages.
+* From either the “About/Login” page, it can go back to other two pages.
 
 # App structure #
 * All modules are loaded in using requirejs
-* There is one Marionette Application instance acting the central hub
-* Each JQM page is modeled as Marionette Layout, which has three Regions: Header, Content, and Footer. This matches how a JQM page is divided to.
+* There is one Marionette Application instance acting as the central hub
+* Each JQM page is modeled as a Marionette Layout, which has three Regions: Header, Content, and Footer. This matches how a JQM page is divided to.
 * Each of these Regions (Header, Content, and Footer) contains its Marionette view (Item, Composite, Collection or Layout view). The views can be nested to construct any complex view for your needs.
 * The rest are just Backbone/JQM stuffs.
 * That is it!
