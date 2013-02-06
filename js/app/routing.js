@@ -10,6 +10,7 @@ define(['app/app'], function (App){
 			];
 		var _route_handlers = {
 			"page_landing_handler" : function(eventType, matchObj, ui, page, evt){
+				console.log ('page_landing_handler');
 			},//page_landing_handler
 			"page_about_handler" : function(eventType, matchObj, ui, page, evt){
 				console.log ('page_about_handler');

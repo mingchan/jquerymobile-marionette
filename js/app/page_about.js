@@ -1,22 +1,23 @@
-define(['app/app', 'text!../../templates/app/page.html'],
-function (App, pageTmpl){
+define(['app/app', 'app/helper', 'text!../../templates/app/content.about.html'],
+function (App, Helper, contentTmpl){
 
 	App.Page_About = (function(){
-		
 		var Page_About = {};
 		
-		var Layout = Backbone.Marionette.Layout.extend({
+		var _pageName = 'about';		
+		var _pageLayout = Helper.newPageLayout({
+			name:_pageName,
+			headerView: 	Helper.newHeaderView({name:_pageName, title:'Welcome to the About Page'}),
+			contentView: 	Helper.newContentView({name:_pageName, template: _.template(contentTmpl, {}) }),
+			footerView: 	Helper.newFooterView({name:_pageName, title:'About Footer'})
 		});
-	  
-	  
+							
 		App.addInitializer(function(options){
-			console.log ('Page_About-App.addInitializer', options)
+			App.vent.trigger("page:about:started");
 		});
 	
-	  return Page_About;
+		  return Page_About;
 	})();
 
-
 	return App.Page_About;
-
 });

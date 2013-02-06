@@ -1,15 +1,20 @@
-define(['app/app', 'text!../../templates/app/page.html'],
-function (App, pageTmpl){
+define(['app/app', 'app/helper', 'text!../../templates/app/content.login.html'],
+function (App, Helper, contentTmpl){
 
 	App.Page_Login = (function(){
 		var Page_Login = {};
-		
-		var Layout = Backbone.Marionette.Layout.extend({
+		var _pageName = 'login';		
+		var _pageLayout = Helper.newPageLayout({
+			name:_pageName,
+			headerView: 	Helper.newHeaderView({name:_pageName, title:'Welcome to the Login Page'}),
+			contentView: 	Helper.newContentView({name:_pageName, template: _.template(contentTmpl, {}) }),
+			footerView: 	Helper.newFooterView({name:_pageName, title:'Login Footer'})
 		});
-	  
+							
 		App.addInitializer(function(options){
-			console.log ('Page_Login-App.addInitializer', options)
+			App.vent.trigger("page:login:started");
 		});
+	
 	
 	  return Page_Login;
 	
