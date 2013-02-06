@@ -6,11 +6,12 @@ Just to put together a simple boilerplate app to learn how to construct a multi-
 Obviously, this is more of for me to understand more about JQM and Marionette.
 The app is very simple and not doing much by design since the focus is on the structure of the different components.
 
-#Packages used in this app#
+#Packages used#
+* Marionette
 * Backbone
 * jQuery & JQM
 * JQM router - not backbone router (It is just my preference)
-** In the current version, it is not really being utilized.
+**In the current version, it is not really being utilized.
 * lodash
 * requirejs
 
