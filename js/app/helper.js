@@ -1,14 +1,32 @@
-define(['app/app', 'text!../../templates/app/page.html'],
-function (App, pageTmpl){
+define(['app/app'],
+function (App){
 	
 	App.Helper = (function(){
 		var Helper = {};
+		
+		Helper.newPanelView = function (opts) {
+			return new  (Backbone.Marionette.ItemView.extend({
+				tagName: 'header', 
+				attributes: function() {
+					return {
+						'region_id': 				'panel',						
+						'id': 						'panel',
+						'data-role': 				'panel',
+					};
+				},
+				initialize: function () {
+					_.bindAll (this, "template");
+				},
+				template: function () {	return 'Panel-options in here!';},
+			}))(opts);
+		};
 		
 		Helper.newHeaderView = function (opts) {
 			return new  (Backbone.Marionette.ItemView.extend({
 				tagName: 'header', 
 				attributes: function() {
 					return {
+						'region_id': 				'header',						
 						'id': 						'header_' + opts.name,
 						'data-role': 				'header',
 						'data-position': 			'fixed',
@@ -16,8 +34,13 @@ function (App, pageTmpl){
 						'data-update-page-padding': 'false'					
 					};
 				},
-				template: function () {	return '<h1>' + opts.title + '</h1>';},
-			}))();
+				initialize: function () {
+					_.bindAll (this, "template");
+				},				
+				template: function () {	
+					return '<h1>' + this.options.title + '</h1>' + 
+						'<a href="#panel" id="app-menu" data-role="button" class="ui-btn-left">Menu</a>';},
+			}))(opts);
 		};
 		
 		Helper.newFooterView = function (opts) {
@@ -25,15 +48,19 @@ function (App, pageTmpl){
 				tagName: 'footer', 
 				attributes: function() {
 					return {
-						'id': 						'footer_' + opts.name,
+						'region_id': 				'footer',						
+						'id': 						'footer_' + this.options.name,
 						'data-role': 				'footer',
 						'data-id': 					'footer_fixed',
 						'data-position': 			'fixed',
 						'data-tap-toggle': 			'false'
 					};
 				},
-				template: function () {	return '<h1>' + opts.title + '</h1>';},
-			}))();
+				initialize: function () {
+					_.bindAll (this, "template");
+				},				
+				template: function () {	return '<h1>' + this.options.title + '</h1>';},
+			}))(opts);
 		};
 
 		Helper.newContentView = function (opts) {
@@ -41,29 +68,51 @@ function (App, pageTmpl){
 				tagName: 'article', 
 				attributes: function() {
 					return {
-						'id': 						'content_' + opts.name,
+						'region_id': 				'content',						
+						'id': 						'content_' + this.options.name,
 						'data-role': 				'content'
 					};
 				},
-		    	template: function () {return opts.template},
-			}))();
+				initialize: function () {
+					_.bindAll (this, "template");
+				},				
+		    	template: function () {return options.template},
+			}))(opts);
 		};
 
+
+		var _ReplaceWithRegion = Backbone.Marionette.Region.extend({
+				 open: function(view){
+				 	//Need this to keep Panel/Header/Content/Footer at the same level for panel to work properly
+			        this.$el.replaceWith(view.el);
+				}
+		});
+
 		Helper.newPageLayout = function (opts) {
+			var _opts = _.extend ({	name: 'noname',
+									panelView: null,
+									headerView: null,
+									contentView: null, 
+									footerView: null,								
+									}, opts);
+			
 			return new ( Backbone.Marionette.Layout.extend({
 				tagName: 'section', 
 				attributes: function() {
 					return {
-						'id': 			'page_' + opts.name,
-						'data-url': 	'page_' + opts.name,
+						'id': 			'page_' + this.options.name,
+						'data-url': 	'page_' + this.options.name,
 						'data-role': 	'page'
 					};
 				},
-		    	template:  _.template(pageTmpl),
+				template: function () {	
+					return "<div region_id='panel'/><div region_id='header'/><div region_id='content'/><div region_id='footer'/>";
+				},
 				regions: {
-				  header:	"#header",
-				  content:	"#content",
-				  footer: 	"#footer",
+				  panel:	{selector: "[region_id=panel]",		regionType: _ReplaceWithRegion},
+				  header:	{selector: "[region_id=header]",	regionType: _ReplaceWithRegion},
+				  content:	{selector: "[region_id=content]",	regionType: _ReplaceWithRegion},
+				  footer:	{selector: "[region_id=footer]",	regionType: _ReplaceWithRegion},
 				},
 				
 				initialize: function(){
@@ -71,11 +120,20 @@ function (App, pageTmpl){
 					this.render();
 				},				
 				onRender: function() {
-					this.header.show (opts.headerView);
-					this.content.show(opts.contentView);
-					this.footer.show (opts.footerView);
+					if (this.options.panelView) {
+						this.panel.show (this.options.panelView);
+					};
+					if (this.options.headerView) {
+						this.header.show (this.options.headerView);
+					};
+					if (this.options.contentView) {
+						this.content.show(this.options.contentView);
+					};
+					if (this.options.footerView) {
+						this.footer.show (this.options.footerView);
+					};
 				},
-			}))();
+			}))(_opts);
 		};
 
 		

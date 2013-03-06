@@ -6,6 +6,7 @@ function (App, Helper, contentTmpl){
 		var _pageName = 'login';		
 		var _pageLayout = Helper.newPageLayout({
 			name:_pageName,
+			panelView: 		Helper.newPanelView(),						
 			headerView: 	Helper.newHeaderView({name:_pageName, title:'Welcome to the Login Page'}),
 			contentView: 	Helper.newContentView({name:_pageName, template: _.template(contentTmpl, {}) }),
 			footerView: 	Helper.newFooterView({name:_pageName, title:'Login Footer'})

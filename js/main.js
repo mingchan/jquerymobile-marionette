@@ -36,7 +36,6 @@ require.config({
 	    	deps: ['lodash', 'jquery'],
 	        exports: 'Backbone'
 	    },
-	    
 	    marionette: {
 	    	deps: ['backbone'],
 	        exports: 'Marionette'
