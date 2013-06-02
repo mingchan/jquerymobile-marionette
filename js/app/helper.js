@@ -1,5 +1,5 @@
-define(['app/app'],
-function (App){
+define(['app/app','text!../../templates/app/panel.html'],
+function (App, panelTmpl){
 	
 	App.Helper = (function(){
 		var Helper = {};
@@ -17,7 +17,17 @@ function (App){
 				initialize: function () {
 					_.bindAll (this, "template");
 				},
-				template: function () {	return 'Panel-options in here!';},
+				template: function () {	return  _.template(panelTmpl, {});},
+				events: {
+				'click a': function(e) {
+					if ($(e.currentTarget).attr('href') === '#'+ $.mobile.activePage.attr('id') ) {
+						$.mobile.activePage.find('[data-role=panel]').panel( "close");
+
+					} 
+					//_showTargetPage ($(e.currentTarget).attr('target-page'));
+				},
+				}//events
+
 			}))(opts);
 		};
 		
