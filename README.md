@@ -15,10 +15,11 @@ See stackoverflow posting:
 
 #App flow user prospective#
 * It has three JQM pages: "Landing, About, Login"
-* Each page have the *cool* panel menu come for free by using JQM-1.3.0
+* Each page has the *cool* panel menu which comes for free by using JQM-1.3.0
 * When it launches, it goes to the Landing page.
 * From the landing page, user can go to either the "About" or the "Login page."
 * From either the “About/Login” page, it can go back to other two pages.
+* From panel menu, it can go to any page.
 
 # App structure #
 * All modules are loaded in using requirejs
