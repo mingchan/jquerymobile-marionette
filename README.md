@@ -1,4 +1,3 @@
-
 A simple boilerplate app for learning how to use Marionette to construct a multi-page JQuery-Mobile (JQM) app .
 This app is very simple and not doing much by design since the focus is on the structure of the different components.
 See stackoverflow posting:
@@ -13,7 +12,7 @@ See stackoverflow posting:
 * lodash
 * requirejs
 
-#App flow user prospective#
+# App flow user prospective#
 * It has three JQM pages: "Landing, About, Login"
 * Each page has the *cool* panel menu which comes for free by using JQM-1.3.x
 * When it launches, it goes to the Landing page.
@@ -29,4 +28,8 @@ See stackoverflow posting:
 * Each of these Regions (Panel, Header, Content, and Footer) contains its Marionette view (Item, Composite, Collection or Layout view). The views can be nested to construct any complex view for your needs.
 * The rest are just Backbone/JQM stuffs.
 * That is it!
+
+## License
+
+Distributed under [MIT license](http://mutedsolutions.mit-license.org/).
 
