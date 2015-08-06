@@ -6,17 +6,17 @@ define([], function (){
 		var App = new Backbone.Marionette.Application();
 
 		var _routerStartedDeferred = $.Deferred();
-		var _pageLlandingStartedDeferred = $.Deferred();
+		var _pageLandingStartedDeferred = $.Deferred();
 
 		App.vent.on ('router:started', function () {
 			_routerStartedDeferred.resolve ();
 		});
 		
 		App.vent.on ('page:landing:started', function () {
-			_pageLlandingStartedDeferred.resolve ();
+			_pageLandingStartedDeferred.resolve ();
 		});
 
-		$.when (_routerStartedDeferred,_pageLlandingStartedDeferred).then (function () {
+		$.when (_routerStartedDeferred,_pageLandingStartedDeferred).then (function () {
 			App.Routing.changePage ('#page_landing');			
 		});
 		
