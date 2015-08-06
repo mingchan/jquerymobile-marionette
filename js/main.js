@@ -3,15 +3,15 @@ var JQMM = JQMM || {};
 require.config({
 	baseUrl: './js/',
 	paths: {		
-		text: 				'libs/require-text-2.1.2',
-		json:				'libs/require-json-0.3.0',
-		jquery: 			'libs/jquery-1.10.1.min',
+		text: 				'libs/require-text-2.1.20',
+		//json:				'libs/require-json-0.3.0',
+		jquery: 			'libs/jquery-1.11.3.min',
 		jqmrouter: 			'libs/jquery.mobile.router-0.9.3.min',
-		jqmobile: 			'libs/jquery.mobile-1.3.1.min',
-		lodash: 			'libs/lodash-1.2.1.min',
-		backbone: 			'libs/backbone-1.0.0.min',
-		marionette: 		'libs/backbone.marionette-1.0.3.min',
-
+		jqmobile: 			'libs/jquery.mobile-1.4.5.min',
+		lodash: 			'libs/lodash-3.10.0.min',
+		backbone: 			'libs/backbone-1.2.1.min',
+		marionette: 		'libs/backbone.marionette-2.4.2.min',
+		
 		app_pre_jqm_init:	'app/pre_jqm_init',
 		
 		},
@@ -71,4 +71,4 @@ function loadCss(url) {
     document.getElementsByTagName("head")[0].appendChild(link);
 }
 
-loadCss ('js/libs/jquery.mobile-1.3.1.min.css');
+loadCss ('js/libs/jquery.mobile-1.4.5.min.css');

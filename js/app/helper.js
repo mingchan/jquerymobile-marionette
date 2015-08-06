@@ -14,8 +14,15 @@ function (App, panelTmpl){
 						'data-role': 				'panel',
 					};
 				},
-				initialize: function () {
+				initialize: function (options) {
 					_.bindAll (this, "template");
+					//console.log ('initialize', options);
+					//options are not attached to view anymore
+					//https://github.com/jashkenas/backbone/issues/2458
+					this.options = _.extend({}, options);
+					
+					return this;
+					
 				},
 				template: function () {	return  _.template(panelTmpl, {});},
 				events: {
@@ -37,15 +44,22 @@ function (App, panelTmpl){
 				attributes: function() {
 					return {
 						'region_id': 				'header',						
-						'id': 						'header_' + opts.name,
+						//'id': 						'header_' + opts.name,
 						'data-role': 				'header',
 						'data-position': 			'fixed',
 						'data-tap-toggle': 			'false',
 						'data-update-page-padding': 'false'					
 					};
 				},
-				initialize: function () {
+				initialize: function (options) {
 					_.bindAll (this, "template");
+					//console.log ('initialize', options);
+					//options are not attached to view anymore
+					//https://github.com/jashkenas/backbone/issues/2458
+					this.options = _.extend({}, options);
+					
+					return this;
+					
 				},				
 				template: function () {	
 					return '<h1>' + this.options.title + '</h1>' + 
@@ -59,15 +73,21 @@ function (App, panelTmpl){
 				attributes: function() {
 					return {
 						'region_id': 				'footer',						
-						'id': 						'footer_' + this.options.name,
+						//'id': 						'footer_' + this.options.name,
 						'data-role': 				'footer',
 						'data-id': 					'footer_fixed',
 						'data-position': 			'fixed',
 						'data-tap-toggle': 			'false'
 					};
 				},
-				initialize: function () {
+				initialize: function (options) {
 					_.bindAll (this, "template");
+					//console.log ('initialize', options);
+					//options are not attached to view anymore
+					//https://github.com/jashkenas/backbone/issues/2458
+					this.options = _.extend({}, options);
+					
+					return this;
 				},				
 				template: function () {	return '<h1>' + this.options.title + '</h1>';},
 			}))(opts);
@@ -79,13 +99,24 @@ function (App, panelTmpl){
 				attributes: function() {
 					return {
 						'region_id': 				'content',						
-						'id': 						'content_' + this.options.name,
+						//'id': 						'content_' + this.options.name,
+						//'id': 						'content_' + opts.name,
 						'data-role': 				'content'
 					};
 				},
-				initialize: function () {
+				initialize: function (options) {
 					_.bindAll (this, "template");
-				},				
+					
+					//console.log ('initialize', options);
+					//options are not attached to view anymore
+					//https://github.com/jashkenas/backbone/issues/2458
+					this.options = _.extend({}, options);
+					
+					return this;
+				},//initialize				
+
+				
+								
 		    	template: function () {return options.template},
 			}))(opts);
 		};
@@ -106,12 +137,12 @@ function (App, panelTmpl){
 									footerView: null,								
 									}, opts);
 			
-			return new ( Backbone.Marionette.Layout.extend({
+			return new ( Backbone.Marionette.LayoutView.extend({
 				tagName: 'section', 
 				attributes: function() {
 					return {
-						'id': 			'page_' + this.options.name,
-						'data-url': 	'page_' + this.options.name,
+						'id': 			'page_' + _opts.name,
+						'data-url': 	'page_' + _opts.name,
 						'data-role': 	'page'
 					};
 				},
@@ -125,7 +156,11 @@ function (App, panelTmpl){
 				  footer:	{selector: "[region_id=footer]",	regionType: _ReplaceWithRegion},
 				},
 				
-				initialize: function(){
+				initialize: function(options) {
+					//console.log ('initialize', options);
+					//options are not attached to view anymore
+					//https://github.com/jashkenas/backbone/issues/2458
+					this.options = _.extend({}, options);
 					$('body').append(this.$el);
 					this.render();
 				},				
