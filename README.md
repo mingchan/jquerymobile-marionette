@@ -1,5 +1,5 @@
 
-A simple boilerplate app for learning how to use Marionette to construct a multi-page JQuery-Mobile (JQM) app .
+A simple boilerplate app for learning how to use Marionette to construct a JQuery-Mobile (JQM) app .
 This app is very simple and not doing much by design since the focus is on the structure of the different components.
 See stackoverflow posting:
 [A newbie to use Marionette with JQuery-Mobile (JQM)](http://stackoverflow.com/questions/14638258/a-newbie-to-use-marionette-with-jquery-mobile-jqm)
