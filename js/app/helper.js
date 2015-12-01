@@ -26,13 +26,12 @@ function (App, panelTmpl){
 				},
 				template: function () {	return  _.template(panelTmpl, {});},
 				events: {
-				'click a': function(e) {
-					if ($(e.currentTarget).attr('href') === '#'+ $.mobile.activePage.attr('id') ) {
-						$.mobile.activePage.find('[data-role=panel]').panel( "close");
-
-					} 
-					//_showTargetPage ($(e.currentTarget).attr('target-page'));
-				},
+					'click a': function(e) {						
+						if ($(e.currentTarget).attr('href') === '#'+ $.mobile.activePage.attr('id') ) {
+							$.mobile.activePage.find('[data-role=panel]').panel( "close");
+	
+						};
+					},
 				}//events
 
 			}))(opts);
@@ -60,10 +59,18 @@ function (App, panelTmpl){
 					
 					return this;
 					
-				},				
+				},
+				events: {
+					'click #app-menu': function(e) {
+						$(e.currentTarget).parents ('[data-role=page]')
+						.find('[data-role=panel]')
+						.trigger( "updatelayout" ).panel( "open");
+					},
+				},
+		
 				template: function () {	
 					return '<h1>' + this.options.title + '</h1>' + 
-						'<a href="#panel" id="app-menu" data-role="button" class="ui-btn-left">Menu</a>';},
+						'<a href="#" id="app-menu" data-role="button" class="ui-btn-left">Menu</a>';},
 			}))(opts);
 		};
 		

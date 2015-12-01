@@ -27,7 +27,7 @@ define(['app/app'], function (App){
 			opts = opts || {};
 			_.extend(opts, { transition: "slide", changeHash: false});
 			$.mobile.changePage(page,  opts );
-		}
+		};
 		
 		App.addInitializer(function(options){
 			App.vent.trigger("router:started");
